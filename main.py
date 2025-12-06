@@ -16,11 +16,14 @@ def display_menu():
     print("6. Open a directory")
     print("7. Delete a directory")
     print("8. Exit\n")
+    print("-----------------------------------")
+    print()
 
 
 print("Welcome to the File System. You are currently in the main directory.")
 display_menu()
 user_answer = input("Enter your choice: ")
+print()
 potential_answer = ["1", "2", "3", "4", "5", "6", "7", "8"]
 
 while user_answer not in potential_answer:
@@ -45,6 +48,7 @@ while user_answer != "8":
             F1.delete_folder()
     
     display_menu()
+    print()
     user_answer = input("Enter your choice: ")
     while user_answer not in potential_answer:
         user_answer = input("Invalid option. Please enter a number between 1-8: ")

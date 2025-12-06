@@ -114,6 +114,10 @@ class FolderSystem:
     
     #This method list all files and directories in the current folder
     def list_all_contents_in_current_folder(self):
+        list_of_contents = self.list_all_directories_in_current_folder() + self.list_all_files_in_current_folder()
+        if len(list_of_contents) == 0:
+            print("The current folder is empty.")
+            return
         if self.current_folder == "/main":
             for key in self.folder.keys():
                 if isinstance(self.folder[key], dict):
