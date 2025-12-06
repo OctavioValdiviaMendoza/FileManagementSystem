@@ -48,7 +48,16 @@ class TextFile(FileInterface):
         for i in range(self.startIndex, self.startIndex + self.size):
             array[i] = None
         print(f"File {self.name} is now deleted.")
-    
+
+    def read_file (self, array):
+        str = array[self.startIndex:self.startIndex + self.size]
+        print("Reading", end="")
+        for _ in range(3):
+            print(".", end="", flush=True)
+            time.sleep(0.5)
+        print()
+        print(str)
+
     """
        WRITE TO FILE METHOD
     
