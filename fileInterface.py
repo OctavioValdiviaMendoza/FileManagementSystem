@@ -14,7 +14,11 @@ class FileInterface(ABC):
         pass
 
     @abstractmethod
-    def delete_file(self):
+    def delete_file(self, array):
+        pass
+
+    @abstractmethod
+    def read_file(self, array):
         pass
 
 

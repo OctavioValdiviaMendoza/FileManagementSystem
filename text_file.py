@@ -1,26 +1,29 @@
 from fileInterface import FileInterface
 import time
+from typing import override
 
 class TextFile(FileInterface):
 
-    name = ""
-    startIndex = 0
-    size = 0
-
     def __init__(self, name):
         self.name = name
+        self.startIndex = 0
+        self.size = 0
 
+    @override
     def get_name(self):
         return self.name
+    
+    @override
     def get_start_index(self):
         return self.startIndex
+    
+    @override
     def get_size(self):
         return self.size
     
     def write_file(self, data, array):
         data_length = len(data)
         self.size = data_length
-        print(self.size)
         if self.startIndex + data_length > len(array):
             print("Error: Not enough space to write the file.")
             return            
@@ -29,7 +32,7 @@ class TextFile(FileInterface):
             if array[i] is None:
                 count += 1
             if count == data_length:
-                self.startIndex = i - data_length 
+                self.startIndex = i - data_length + 1
                 for j in range(data_length):
                     array[self.startIndex + j] = data[j]
                 break
@@ -39,7 +42,7 @@ class TextFile(FileInterface):
                 count = 0
         
             
-    
+    @override
     def delete_file(self, array):
         print("Deleting", end="")
         for _ in range(3):
@@ -51,12 +54,19 @@ class TextFile(FileInterface):
             array[i] = None
         print(f"File {self.name} is now deleted.")
 
+    @override
     def read_file (self, array):
         string = array[self.startIndex:self.startIndex + self.size]
-        #result = "".join(string)
+        try:
+            if string[0] is None:
+                raise ValueError("has been deleted or is empty")
+        except ValueError as e:
+            print(e)
+            return
+        result = "".join(string)
         print("Reading", end="")
         for _ in range(3):
             print(".", end="", flush=True)
             time.sleep(0.5)
         print()
-        print(string)
+        print(result)
