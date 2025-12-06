@@ -1,8 +1,8 @@
 #File System Operations Example
-from text_file import File
+from text_file import TextFile
 
 #Import a file object 
-File1 = File("example.txt", 0, 20)
+File1 = TextFile("example.txt", 0, 20)
 
 print("Welcome to the File System you are currently in the main directory.")
 user_answer = input("Please select an option:\n1. List files\n2. Create a file\n3. Read a file\n4. Delete a file\n5. List directories\n6. Create a directory\n7. Delete a directory\n8. Exit\n")
