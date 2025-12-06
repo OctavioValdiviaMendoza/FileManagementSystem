@@ -2,10 +2,13 @@ from fileInterface import FileInterface
 import time
 
 class TextFile(FileInterface):
-    def __init__(self, name, startIndex, size):
+
+    name = ""
+    startIndex = 0
+    size = 0
+
+    def __init__(self, name):
         self.name = name
-        self.startIndex = 0
-        self.size = 0
 
     def get_name(self):
         return self.name
@@ -15,24 +18,23 @@ class TextFile(FileInterface):
         return self.size
     
     def write_file(self, data, array):
-        temp = 0
         data_length = len(data)
         self.size = data_length
-        can_write = True
+        print(self.size)
         if self.startIndex + data_length > len(array):
             print("Error: Not enough space to write the file.")
-            can_write = False
-
+            return            
+        count = 0 #count empty spaces to see if we can write
         for i in range(0, len(array)):
-            count = 0 #count empty spaces to see if we can write
             if array[i] is None:
                 count += 1
             if count == data_length:
-                self.startIndex = i
+                self.startIndex = i - data_length 
+                for j in range(data_length):
+                    array[self.startIndex + j] = data[j]
                 break
-            if i == len(array) - 1 and count < data_length:
-                print("Error: Not enough contiguous space to write the file.")
-                can_write = False
+            if i == len(array) - 1 and count != data_length:
+                print("Error: Not enough space to write the file...")
             if array[i] is not None:
                 count = 0
         
@@ -50,19 +52,11 @@ class TextFile(FileInterface):
         print(f"File {self.name} is now deleted.")
 
     def read_file (self, array):
-        str = array[self.startIndex:self.startIndex + self.size]
+        string = array[self.startIndex:self.startIndex + self.size]
+        #result = "".join(string)
         print("Reading", end="")
         for _ in range(3):
             print(".", end="", flush=True)
             time.sleep(0.5)
         print()
-        print(str)
-
-    """
-       WRITE TO FILE METHOD
-    
-       DELETE FILE METHOD
-       
-       READ FROM FILE METHOD
-       
-    """
+        print(string)
