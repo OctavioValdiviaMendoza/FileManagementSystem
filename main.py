@@ -40,8 +40,8 @@ while user_answer != "8":
         case "4":
             F1.delete_file(RamArray)
         case "5":
-            folder_name = input("Enter the name of the folder to create: ")
-            F1.create_folder(folder_name, F1.current_folder)
+            folder_name = input("Enter the name of the folder to create: ").strip()
+            F1.create_folder(folder_name)
         case "6":
             F1.update_current_folder()
         case "7":
