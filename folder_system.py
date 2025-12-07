@@ -63,7 +63,7 @@ class FolderSystem:
     #This method updates the current folder path based on user input
     def update_current_folder(self):
         all_folders = self.list_all_directories_in_current_folder()
-        directory_to_open = input("Enter the name of the directory to open or '..' to go up one level: ").strip()
+        directory_to_open = input("Enter the name of the directory to open or '..' to return to parent directory: ").strip()
         if directory_to_open not in all_folders and directory_to_open != "..":
             print("Directory does not exist. Please try again.")
             return
@@ -96,19 +96,28 @@ class FolderSystem:
     #This method list all files and directories in the current folder
     def list_all_contents_in_current_folder(self):
         current_obj = self.get_current_folder_object()
+        print()
+        print("====================================================================")
+        print(f"Contents of current folder '{self.current_folder}':")
+        print("====================================================================")
         if current_obj is None:
             print(f"Error: Cannot access {self.current_folder}")
+            print("====================================================================")
             return
+
         
         if len(current_obj) == 0:
             print("The current folder is empty.")
+            print("====================================================================")
             return
+            
         
         for key, value in current_obj.items():
             if isinstance(value, dict):
                 print("Folder:", key)
             else:
                 print("File:", key)
+        print("====================================================================")
 
     
 

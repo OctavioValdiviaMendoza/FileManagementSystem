@@ -1,5 +1,7 @@
+from unittest import result
 from fileInterface import FileInterface
 import time
+import textwrap
 from typing import override
 
 class TextFile(FileInterface):
@@ -68,5 +70,12 @@ class TextFile(FileInterface):
         for _ in range(3):
             print(".", end="", flush=True)
             time.sleep(0.5)
+        width = 45
+        WrappedText = textwrap.wrap(result, width=width)
         print()
-        print(result)
+        print()
+        print(f"File '{self.name}':")
+        print("=" * (width + 5))
+        for line in WrappedText:
+            print("=", line.ljust(width), "=")
+        print("=" * (width + 5))
