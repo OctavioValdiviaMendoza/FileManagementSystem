@@ -152,7 +152,7 @@ class FolderSystem:
 
         return all_files
     
-    def delete_folder(self):
+    def delete_folder(self, array):
         current_obj = self.get_current_folder_object()
         if current_obj is None:
             print()
@@ -170,11 +170,28 @@ class FolderSystem:
             print("=" * 45)
             return
         
+        # Recursively delete all contents of the folder
+        self._delete_folder_recursive(current_obj[folder_to_delete], array)
+        
+        # Delete the folder itself
         del current_obj[folder_to_delete]
         print("=" * 45)
         print(f"Folder {folder_to_delete} deleted.")
         print("=" * 45)
         print()
+    
+    def _delete_folder_recursive(self, folder_obj, array):
+        """Helper method to recursively delete all contents in a folder"""
+        for key, value in list(folder_obj.items()):
+            if isinstance(value, dict):
+                # It's a folder, recurse into it
+                self._delete_folder_recursive(value, array)
+                del folder_obj[key]
+            elif isinstance(value, TextFile):
+                # It's a file, delete it from array and remove from folder
+                value.delete_file(array)
+                del folder_obj[key]
+
 
     def read_file_from_current_folder(self, array):
         current_obj = self.get_current_folder_object()

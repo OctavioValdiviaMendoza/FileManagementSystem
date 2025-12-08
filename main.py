@@ -45,7 +45,7 @@ while user_answer != "8":
         case "6":
             F1.update_current_folder()
         case "7":
-            F1.delete_folder()
+            F1.delete_folder(RamArray)
     
     display_menu()
     print()
@@ -54,5 +54,6 @@ while user_answer != "8":
         user_answer = input("Invalid option. Please enter a number between 1-8: ")
 
 print("Thank you for using the File System. Goodbye!")
+print(RamArray)
 
 
