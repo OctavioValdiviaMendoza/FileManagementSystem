@@ -54,6 +54,4 @@ while user_answer != "8":
         user_answer = input("Invalid option. Please enter a number between 1-8: ")
 
 print("Thank you for using the File System. Goodbye!")
-print(RamArray)
-
 

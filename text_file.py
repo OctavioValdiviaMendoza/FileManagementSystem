@@ -1,4 +1,3 @@
-from unittest import result
 from fileInterface import FileInterface
 import time
 import textwrap
