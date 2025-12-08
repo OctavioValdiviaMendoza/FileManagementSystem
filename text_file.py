@@ -27,7 +27,10 @@ class TextFile(FileInterface):
         data_length = len(data)
         self.size = data_length
         if self.startIndex + data_length > len(array):
+            print()
+            print("=" * 45)
             print("Error: Not enough space to write the file.")
+            print("=" * 45)
             return            
         count = 0 #count empty spaces to see if we can write
         for i in range(0, len(array)):
@@ -39,7 +42,10 @@ class TextFile(FileInterface):
                     array[self.startIndex + j] = data[j]
                 break
             if i == len(array) - 1 and count != data_length:
+                print()
+                print("=" * 45)
                 print("Error: Not enough space to write the file...")
+                print("=" * 45)
             if array[i] is not None:
                 count = 0
         
@@ -54,7 +60,10 @@ class TextFile(FileInterface):
 
         for i in range(self.startIndex, self.startIndex + self.size):
             array[i] = None
+        print()
+        print("=" * 45)
         print(f"File {self.name} is now deleted.")
+        print("=" * 45)
 
     @override
     def read_file (self, array):

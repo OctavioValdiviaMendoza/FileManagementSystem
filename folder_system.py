@@ -53,7 +53,10 @@ class FolderSystem:
         file_to_delete = input("Enter the name of the file to delete: ").strip()
         list_of_files = self.list_all_files_in_current_folder()
         if file_to_delete not in list_of_files:
+            print()
+            print("=" * 45)
             print("File does not exist in the current directory.")
+            print("=" * 45)
             return
         
         file_obj = current_obj[file_to_delete]
@@ -64,8 +67,10 @@ class FolderSystem:
     def update_current_folder(self):
         all_folders = self.list_all_directories_in_current_folder()
         directory_to_open = input("Enter the name of the directory to open or '..' to return to parent directory: ").strip()
+        print("=" * 45)
         if directory_to_open not in all_folders and directory_to_open != "..":
             print("Directory does not exist. Please try again.")
+            print("=" * 45)
             return
         if directory_to_open == "..":
             if self.current_folder != "/main":
@@ -74,6 +79,7 @@ class FolderSystem:
                 print("You are already in the main directory.")
         else:
             self.current_folder += "/" + directory_to_open
+        print("=" * 45)
 
     def get_current_folder(self):
         return self.current_folder
@@ -149,17 +155,26 @@ class FolderSystem:
     def delete_folder(self):
         current_obj = self.get_current_folder_object()
         if current_obj is None:
+            print()
+            print("=" * 45)
             print(f"Error: Cannot access {self.current_folder}")
+            print("=" * 45)
             return
         
         folder_to_delete = input("Enter the name of the folder to delete: ").strip()
         list_of_folders = self.list_all_directories_in_current_folder()
         if folder_to_delete not in list_of_folders:
+            print()
+            print("=" * 45)
             print("Folder does not exist in the current directory.")
+            print("=" * 45)
             return
         
         del current_obj[folder_to_delete]
+        print("=" * 45)
         print(f"Folder {folder_to_delete} deleted.")
+        print("=" * 45)
+        print()
 
     def read_file_from_current_folder(self, array):
         current_obj = self.get_current_folder_object()
@@ -170,7 +185,10 @@ class FolderSystem:
         file_to_read = input("Enter the name of the file to read: ").strip()
         list_of_files = self.list_all_files_in_current_folder()
         if file_to_read not in list_of_files:
+            print()
+            print("=" * 45)
             print("File does not exist in the current directory.")
+            print("=" * 45)
             return
         
         file_obj = current_obj[file_to_read]
